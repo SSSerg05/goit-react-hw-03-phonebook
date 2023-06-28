@@ -67,9 +67,9 @@ export class Phonebook extends Component {
 
   componentDidUpdate(preProp, preState) { 
     const { contacts } = this.state
-    
+
     if (preState.contacts !== contacts) {
-      localStorage.setItem(contacts, JSON.stringify(contacts));
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }
 
