@@ -18,7 +18,7 @@ import { DeskPhonebook } from "./Phonebook.styled";
 export class Phonebook extends Component {
 
   state = {
-    contacts: contactsInitial,
+    contacts: [],
     filter: '',
   }
 
@@ -64,6 +64,21 @@ export class Phonebook extends Component {
     }))
   }
 
+  componentDidMount() { 
+    try {
+      const list = localStorage.getItem('contacts');
+      const contacts = JSON.parse(list);
+    console.log(contacts);
+      if (contacts) {
+        this.setState({ contacts });
+      } else {
+        this.setState({ contacts: contactsInitial });
+      }
+
+    } catch (error) {
+      console.log('Cann`t load data without LocalStorage'); 
+    }
+  }
 
   componentDidUpdate(preProp, preState) { 
     const { contacts } = this.state
